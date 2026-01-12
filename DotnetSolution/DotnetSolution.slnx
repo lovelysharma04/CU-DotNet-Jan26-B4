@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/week2/">
+    <Project Path="FrameworkConsoleApp/FrameworkConsoleApp.csproj" />
+    <Project Path="MyClassLibrary/MyClassLibrary.csproj" />
+    <Project Path="UserLibraryDemo/UserLibraryDemo.csproj" />
+  </Folder>
+</Solution>
