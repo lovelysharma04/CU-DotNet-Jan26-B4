@@ -28,7 +28,6 @@
 
             while (lives > 0)
             {
-                // print word
                 Console.Write("Word: ");
                 for (int i = 0; i < dash.Length; i++)
                     Console.Write(dash[i] + " ");
@@ -36,13 +35,11 @@
 
                 Console.WriteLine("Lives left: " + lives);
 
-                // print guessed letters
                 Console.Write("Guessed: ");
                 for (int i = 0; i < guessed.Count; i++)
                     Console.Write(guessed[i] + " ");
                 Console.WriteLine();
 
-                // guess input
                 Console.Write("Guess a letter: ");
                 string input = Console.ReadLine().ToUpper();
                 if (input.Length == 0) continue;
@@ -76,7 +73,6 @@
                     Console.WriteLine("Nope! That's not in the word.\n");
                 }
 
-                // check win manually
                 bool win = true;
                 for (int i = 0; i < dash.Length; i++)
                     if (dash[i] == '_') win = false;
