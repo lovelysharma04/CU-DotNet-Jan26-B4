@@ -8,14 +8,14 @@
         {
             Name = name;
         }
-        public void AddFriend(Person friend)
-        {
-            if (!Friends.Contains(friend))
-            {
-                Friends.Add(friend);
-                friend.Friends.Add(this);
-            }
-        }
+        //public void AddFriend(Person friend)
+        //{
+        //    if (!Friends.Contains(friend))
+        //    {
+        //        Friends.Add(friend);
+        //        friend.Friends.Add(this);
+        //    }
+        //}
     }
     class SocialNetwork
     {
@@ -23,6 +23,21 @@
         public void AddMember(Person member)
         {
             _members.Add(member);
+        }
+        public void AddFriend(Person friend1, Person friend2)
+        {
+            if(!(_members.Contains(friend1) && _members.Contains(friend2)))
+            {
+                Console.WriteLine($"Any of the Friends {friend1.Name} {friend2.Name} are not on Social Platform");
+            }
+            else
+            {
+                if (!friend1.Friends.Contains(friend2))
+                {
+                    friend1.Friends.Add(friend2);
+                    friend2.Friends.Add(friend1);
+                }
+            }
         }
         public void ShowMember()
         {
@@ -38,7 +53,7 @@
             }
         }
     }
-    internal class SocialNetworking
+    internal class GraphSocialNetworking
     {
         static void Main(string[] args)
         {
@@ -48,16 +63,23 @@
             Person p2 = new Person("Bhaskar");
             Person p3 = new Person("Kashish");
             Person p4 = new Person("Priya");
+            Person p5 = new Person("Eena");
 
             network.AddMember(p1);
             network.AddMember(p2);
             network.AddMember(p3);
             network.AddMember(p4);
-
-            p1.AddFriend(p2);
-            p1.AddFriend(p3);
-            p2.AddFriend(p3);
-            p4.AddFriend(p2);
+            
+            network.AddFriend(p1 , p2);
+            network.AddFriend(p1, p3);
+            network.AddFriend(p2, p3);
+            network.AddFriend(p4, p2);
+            network.AddFriend(p1, p5);
+            
+            //p1.AddFriend(p2);
+            //p1.AddFriend(p3);
+            //p2.AddFriend(p3);
+            //p4.AddFriend(p2);
 
             network.ShowMember();
 
