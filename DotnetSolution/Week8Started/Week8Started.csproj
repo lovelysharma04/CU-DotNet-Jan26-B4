@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>Week3DotNet.PracticeDay1</StartupObject>
+    <StartupObject>Day43_01_FinancialPortfolioManagement</StartupObject>
   </PropertyGroup>
 
 </Project>

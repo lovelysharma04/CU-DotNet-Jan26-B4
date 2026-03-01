@@ -1,0 +1,12 @@
+[
+  {
+    "LaptopId": 111,
+    "Model": "HP Pavollion",
+    "Price": 210000
+  },
+  {
+    "LaptopId": 112,
+    "Model": "Lenovo",
+    "Price": 200000
+  }
+]

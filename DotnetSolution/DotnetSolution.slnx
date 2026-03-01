@@ -1,7 +1,35 @@
 <Solution>
   <Folder Name="/week2/">
-    <Project Path="FrameworkConsoleApp/FrameworkConsoleApp.csproj" />
+    <Project Path="CSharpLearning/CSharpLearning.csproj" Id="41f4613c-1ff9-4cf3-89d1-26db080a1dc8" />
+    <Project Path="FrameworkConsoleApp/FrameworkConsoleApp.csproj" Id="f0f3d86c-507a-409f-b56e-6abf69e7a327" />
     <Project Path="MyClassLibrary/MyClassLibrary.csproj" />
     <Project Path="UserLibraryDemo/UserLibraryDemo.csproj" />
+    <Project Path="WebAPIDemo/WebAPIDemo.csproj" Id="645f3e4d-4c1a-42c5-97b5-d90c9867c563" />
+  </Folder>
+  <Folder Name="/week3/">
+    <Project Path="Week3DotNet/Week3DotNet.csproj" Id="81a26918-e8de-4af5-aea7-458b3afb9e51" />
+  </Folder>
+  <Folder Name="/Week4/">
+    <Project Path="Week4Started/Week4Started.csproj" Id="e1f5f700-d625-4a7b-99ae-47e5fc781781" />
+  </Folder>
+  <Folder Name="/week5/">
+    <Project Path="Week5Started/Week5Started.csproj" Id="f105be3f-c4e9-42fe-b498-3701f737b8c0" />
+  </Folder>
+  <Folder Name="/week6/">
+    <Project Path="Week6Started/Week6Started.csproj" Id="d579c731-6174-493c-8112-1fab45295ea4" />
+  </Folder>
+  <Folder Name="/week7/">
+    <Project Path="MyLibrary/MyLibrary.csproj" Id="a518179b-ec9d-4c5a-862e-12feb73c50b8" />
+    <Project Path="MyLibraryTests/MyLibraryTests.csproj" Id="8f936015-3562-4c06-87fb-489395054563" />
+    <Project Path="Week7Started/Week7Started.csproj" Id="0e8c3815-7e7d-4b13-8151-cbcaf6ec2e40" />
+  </Folder>
+  <Folder Name="/week8/">
+    <Project Path="DemoEntityFramework/DemoEntityFramework.csproj" Id="3975ceef-16ba-4e26-924f-cd21e32b2845" />
+    <Project Path="EmployeeAnnualPerformanceBonusCalculationLibrary/EmployeeAnnualPerformanceBonusCalculationLibrary.csproj" Id="7dffa50f-eba0-4380-90cc-148c25a8551a" />
+    <Project Path="Week8-EmployeeAnnualPerformance/Week8-EmployeeAnnualPerformance.csproj" Id="b7fe9704-dccb-495b-a6dc-3f0cc4571f83" />
+    <Project Path="Week8Started/Week8Started.csproj" Id="0dff1fe4-fc4f-44d7-a691-e84e7c041bba" />
+  </Folder>
+  <Folder Name="/WeekWiseAssessment/">
+    <Project Path="WeeklyAssisment/WeeklyAssisment.csproj" Id="77f97c82-b574-41c8-baf7-d6c74bb7735a" />
   </Folder>
 </Solution>

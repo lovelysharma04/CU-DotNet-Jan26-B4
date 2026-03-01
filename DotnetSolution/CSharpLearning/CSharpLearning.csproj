@@ -5,7 +5,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>CSharpLearning.SmartAccessControlLogProcessor</StartupObject>
+    <StartupObject>CSharpLearning.Day10SalesOrderProcessingSystem</StartupObject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyClassLibrary\MyClassLibrary.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -45,6 +45,7 @@ namespace Week3DotNet
             cube = Convert.ToInt32(Math.Pow(num, 3));
             return num*2;
         }
+
         public static double GymMembership(bool treadmill, bool weightLifting, bool zumba)
         {
             double bill = 1000.0;
