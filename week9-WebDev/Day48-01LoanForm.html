@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Loan Application Form</h1>
+    <form>
+        <table>
+            <tr>
+                <td><label for="name">Enter Applicant Name:</label></td>
+                <td><input type="text" id="name" pattern="^[A-Z]{1}[a-z]{1,}$" name="name" required></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Select Gender:</label>
+                </td>
+                <td>
+                    <input type="radio" name="Gender" id="male" value="M" required/>
+                    <label for="male">Male</label>
+                    <input type="radio" name="Gender" id="female" value="F" required/>
+                    <label for="female">Female</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Select DOB:</label>
+                </td>
+                <td>
+                    <input type="date" name="dob" id="dob" min="2000-01-01" max="2026-01-01"required/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="amount">Enter Loan Amount:</label>
+                </td>
+                 <td>
+                    <input type="number" name="amount" id="amount" min="4000" required/>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="purpose">Select Purpose:</label></td>
+                <td>
+                    <select id="purpose" name="purpose" id="purpose" required>
+                            <option value="">select</option>
+                            <option value="1">Home</option>
+                            <option value="2">Education</option>
+                            <option value="3">Vehicle</option>
+                            <option value="4">Personal</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="income">Enter Monthly Income:</label></td>
+                <td><input type="number" id="income" name="income"></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="phone">Enter Phone Number:</label>
+                </td>
+                <td>
+                    <input type="number" pattern="^[7-9]{1}[0-9]{9}$" name="phone" id="phone" required/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Enter Your Email:</label>
+                </td>
+                <td>
+                    <input type="email" placeholder="abc@abc.com" name="email" id="email" required/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="pan">Enter Your Pan Number:</label>
+                </td>
+                <td>
+                    <input type="text" placeholder="ABCDE1234Z" pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}$" name="pan" id="pan" required/>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="cibil">CIBIL Score:</label></td>
+                <td><input type="number" id="cibil" name="cibil" min="300" max="900"></td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Apply">
+                    <input type="reset" value="Clear">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
