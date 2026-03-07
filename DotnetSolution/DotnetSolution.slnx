@@ -29,6 +29,9 @@
     <Project Path="Week8-EmployeeAnnualPerformance/Week8-EmployeeAnnualPerformance.csproj" Id="b7fe9704-dccb-495b-a6dc-3f0cc4571f83" />
     <Project Path="Week8Started/Week8Started.csproj" Id="0dff1fe4-fc4f-44d7-a691-e84e7c041bba" />
   </Folder>
+  <Folder Name="/week9/">
+    <Project Path="EFCoreRelated/EFCoreRelated.csproj" Id="7e76544d-3023-4421-bf5f-b72b4e58c277" />
+  </Folder>
   <Folder Name="/WeekWiseAssessment/">
     <Project Path="WeeklyAssisment/WeeklyAssisment.csproj" Id="77f97c82-b574-41c8-baf7-d6c74bb7735a" />
   </Folder>

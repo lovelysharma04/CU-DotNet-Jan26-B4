@@ -1,4 +1,4 @@
-﻿namespace Week4Started
+﻿ namespace Week4Started
 {
     internal class Demo2CollectionInterfaces
     {

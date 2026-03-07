@@ -1,0 +1,13 @@
+Book Info:
+Book Name:Title-1, Quantity:15,Price:206
+Book Name:Title-2, Quantity:23,Price:527
+Book Name:Title-4, Quantity:24,Price:58
+Category Total Price:
+Category:Category-1, Total Price:1392
+Category:Category-2, Total Price:12121
+Category:Category-4, Total Price:3090
+Category And Author With Count:
+Category:Category-1, Author:Author-1,Count:24
+Category:Category-2, Author:Author-2,Count:23
+Category:Category-4, Author:Author-1,Count:15
+Total Price: 16603
