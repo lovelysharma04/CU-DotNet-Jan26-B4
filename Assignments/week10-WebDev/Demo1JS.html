@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //alert('JS from Head..')
+        let age=21;
+        console.log(typeof(age));
+        let name;
+        console.log(typeof(name));
+    
+        function displayOnLoad(){
+            //alert('Page Loaded');
+        }
+    </script>
+</head>
+<body  onload="displayOnLoad()">
+    <div>
+        <input type="button" value="Click Me" onclick="sayHello()">
+        <input type="button" value="Change para" onclick="changePara()">
+        <p id="p1">This is content of paragraph.</p>
+    </div>
+    <script>
+        function changePara(){
+            let para1=document.getElementById('p1');
+            para1.innerHTML="Para <b>Content</b> changed..."
+        }
+        function sayHello(){
+            console.log('Console of browser');
+        }
+        //alert('JS from Body..')
+    </script>
+</body>
+</html>

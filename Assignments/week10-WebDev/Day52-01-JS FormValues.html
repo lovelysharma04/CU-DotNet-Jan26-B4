@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showName(){
+            var ename=document.getElementById('ename')
+            alert(ename.value)
+        }
+        function showSkills(){
+           let skills = document.getElementsByName("skills[]");
+           let selected = "";
+
+            for (let i = 0; i < skills.length; i++) {
+                if (skills[i].checked) {
+                    selected += skills[i].value + " ";
+                    console.log(skills[i].value);
+                }
+            }
+            console.log("Selected Skills: " + selected);
+        }
+        function showDataOnConsole(){
+            let name = document.getElementById("ename").value;
+            let dob = document.getElementById("dob").value;
+            let age = document.getElementById("age").value;
+            let city = document.getElementById("city").value;
+            let email = document.getElementById("email").value;
+            let pan = document.getElementById("pan").value;
+
+            // Gender
+            let gender = "";
+            let genders = document.getElementsByName("Gender");
+            for(let i=0;i<genders.length;i++){
+                if(genders[i].checked){
+                    gender = genders[i].value;
+                }
+            }
+
+            // Skills
+            let skills = document.getElementsByName("skills[]");
+            let selectedSkills = "";
+
+            for (let i = 0; i < skills.length; i++) {
+                if (skills[i].checked) {
+                    selectedSkills += skills[i].value + " ";
+                }
+            }
+
+            
+            let result = "Name: " + name +
+                        "\nDOB: " + dob +
+                        "\nGender: " + gender +
+                        "\nSkills: " + selectedSkills +
+                        "\nAge: " + age +
+                        "\nCity: " + city +
+                        "\nEmail: " + email +
+                        "\nPAN: " + pan;
+
+            console.log(result);
+            
+        }
+    </script>
+</head>
+<body>
+    <h1>Employee Registration Form</h1>
+    <form onsubmit="showDataOnConsole(); return false;">
+        <table>
+            <tr>
+                <td>
+                    <label>Enter Your Name</label>
+                </td>
+                <td>
+                    <input type="text" pattern="^[A-Z]{1}[a-z]{1,}$" name="ename" id="ename" />
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Select DOB</label>
+                </td>
+                <td>
+                    <input type="date" name="dob" id="dob" min="2000-01-01" max="2026-01-01"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Select Gender</label>
+                </td>
+                <td>
+                    <input type="radio" name="Gender" id="male" value="M" />
+                    <label for="male">Male</label>
+                    <input type="radio" name="Gender" id="female" value="F" />
+                    <label for="female">Female</label>
+                </td>
+            </tr>
+            <tr>
+            <td> Select Skills</td>
+            <td>
+                <input type="checkbox" id="html" name="skills[]" value="HTML">
+                <label for="html">HTML</label>
+
+                <input type="checkbox" id="css" name="skills[]" value="CSS">
+                <label for="css">CSS</label>
+
+                <input type="checkbox" id="js" name="skills[]" value="JavaScript">
+                <label for="js">JavaScript</label>
+
+                <input type="checkbox" id="python" name="skills[]" value="Python">
+                <label for="python">Python</label>
+            </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Enter Age</label>
+                </td>
+                <td>
+                    <input type="number" name="age" id="age" min="18" max="90"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Select City</label>
+                </td>
+                <td>
+                   <select id="city" name="city" >
+                        <option value="">Select</option>
+                        <option value="1">Delhi</option>
+                        <option value="2">Mumbai</option>
+                        <option value="3">Pune</option>
+                        <option value="4">Chennai</option>
+                        <option value="5">Gwalior</option>
+                        <option value="6">Kolkata</option>
+                   </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Enter Your Email</label>
+                </td>
+                <td>
+                    <input type="email" placeholder="abc@abc.com" name="email" id="email" />
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Enter Your Pan Number</label>
+                </td>
+                <td>
+                    <input type="text" placeholder="ABCDE1234Z" pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}$" name="pan" id="pan" />
+                </td>
+            </tr>
+            <tr>
+                <td> 
+                </td>
+                <td>
+                   <input type="Submit"/>
+                   <input type="Reset"/>
+                </td>
+                
+            </tr>
+
+        </table>
+    </form>
+</body>
+</html>
