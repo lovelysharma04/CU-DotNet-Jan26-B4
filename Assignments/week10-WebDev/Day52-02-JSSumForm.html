@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sum Validation</title>
+
+<script>
+function validateInput(inputBox){
+
+    let value = inputBox.value;
+
+    if(value === ""){
+        inputBox.style.backgroundColor = "red";
+    }
+    else if(isNaN(value)){
+        inputBox.style.backgroundColor = "yellow";
+    }
+    else{
+        inputBox.style.backgroundColor = "white";
+    }
+}
+
+function calculateSum(){
+    let num1 = Number(document.getElementById("num1").value);
+    let num2 = Number(document.getElementById("num2").value);
+
+    document.getElementById("result").value = num1 + num2;
+}
+</script>
+
+</head>
+<body>
+
+<h2>Sum of Two Numbers</h2>
+
+<input type="text" id="num1" onblur="validateInput(this)" placeholder="Enter first number">
+
++
+
+<input type="text" id="num2" onblur="validateInput(this)" placeholder="Enter second number">
+
+<button>=</button>
+
+<input type="text" id="result" readonly>
+
+<br><br>
+
+<button onclick="calculateSum()">Calculate</button>
+
+</body>
+</html>
