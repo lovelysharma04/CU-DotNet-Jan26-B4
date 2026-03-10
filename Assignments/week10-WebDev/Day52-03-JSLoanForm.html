@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ClearDebt Loan Calculator</title>
+
+<style>
+
+body{
+background:#dcdcdc;
+font-family: Arial;
+}
+
+.header{
+background:#28a745;
+text-align:center;
+font-size:40px;
+font-weight:bold;
+padding:20px;
+margin:20px 60px;
+}
+
+.form-table{
+width:80%;
+margin:40px auto;
+font-size:35px;
+}
+
+.form-table td{
+padding:20px;
+}
+
+.label{
+text-align:left;
+}
+
+.input{
+text-align:right;
+}
+
+input{
+width:90%;
+height:40px;
+border:4px solid black;
+}
+
+button{
+font-size:35px;
+padding:10px 25px;
+background:#9ed0e0;
+border:4px solid black;
+cursor:pointer;
+}
+
+.btn-area{
+text-align:center;
+margin-top:20px;
+}
+
+table{
+width:90%;
+margin:40px auto;
+border-collapse:collapse;
+}
+
+th{
+background:#9ed0e0;
+padding:15px;
+font-size:20px;
+}
+
+td{
+padding:12px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+Welcome To ClearDebt Loan Calculator
+</div>
+
+<table class="form-table">
+
+<tr>
+<td class="label">Enter Amount:</td>
+<td class="input"><input type="number" id="amount"></td>
+</tr>
+
+<tr>
+<td class="label">Enter Rate Of Interest:</td>
+<td class="input"><input type="number" id="rate"></td>
+</tr>
+
+<tr>
+<td class="label">Enter Time(year):</td>
+<td class="input"><input type="number" id="years"></td>
+</tr>
+
+</table>
+
+<div class="btn-area">
+<button onclick="calculateLoan()">Calculate</button>
+</div>
+
+<table border="1">
+
+<thead>
+<tr>
+<th>SNO</th>
+<th>Loan Left</th>
+<th>EMI</th>
+<th>Principal</th>
+<th>Interest</th>
+<th>Remaining</th>
+</tr>
+</thead>
+
+<tbody id="scheduleBody"></tbody>
+
+</table>
+
+<script>
+
+function calculateLoan(){
+
+let P = parseFloat(document.getElementById("amount").value);
+let annualRate = parseFloat(document.getElementById("rate").value);
+let years = parseFloat(document.getElementById("years").value);
+
+let n = years * 12;
+let r = (annualRate/100)/12;
+
+let EMI = P * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+
+let balance = P;
+
+let table = document.getElementById("scheduleBody");
+table.innerHTML="";
+
+for(let i=1;i<=n;i++){
+
+let interest = balance * r;
+let principal = EMI - interest;
+let remaining = balance - principal;
+
+table.innerHTML += `
+<tr>
+<td>${i}</td>
+<td>${balance.toFixed(2)}</td>
+<td>${EMI.toFixed(2)}</td>
+<td>${principal.toFixed(2)}</td>
+<td>${interest.toFixed(2)}</td>
+<td>${remaining.toFixed(2)}</td>
+</tr>
+`;
+
+balance = remaining;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

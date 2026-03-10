@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb</title>
+</head>
+<body>
+        <button onclick="onBulb()">ON</button>
+        <button onclick="offBulb()">OFF</button>
+
+        <img id="offbulb" src="./images/bulb off.jpeg" width="550px"/>
+
+        <script>
+            var i = document.getElementById("offbulb");
+
+            function onBulb(){
+                i.src = "./images/bulb on.jpeg";
+            }
+
+            function offBulb(){
+                i.src = "./images/bulb off.jpeg";
+            }
+        </script>
+
+</body>
+</html>
