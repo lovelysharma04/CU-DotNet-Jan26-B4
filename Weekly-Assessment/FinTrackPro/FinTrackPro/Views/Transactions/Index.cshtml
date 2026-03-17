@@ -1,0 +1,64 @@
+﻿@model IEnumerable<FinTrackPro.Models.Transaction>
+@using System.Linq
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Transactions</h1>
+
+<p>
+    <a asp-action="Create">Add New Transaction</a>
+</p>
+<div class="page-bg dark-bg">
+    <table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in (Model ?? Enumerable.Empty<FinTrackPro.Models.Transaction>()).Where(item => item.Category != null && (item.Category.Equals("Debit", System.StringComparison.OrdinalIgnoreCase) || item.Category.Equals("Credit", System.StringComparison.OrdinalIgnoreCase)))) {
+        <tr class="@(item.Category != null && item.Category.Equals("Debit", System.StringComparison.OrdinalIgnoreCase) ? "table-danger" : item.Category != null && item.Category.Equals("Credit", System.StringComparison.OrdinalIgnoreCase) ? "table-success" : "")">
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @($"₹{item.Amount:N2}")
+            </td>
+            <td>
+                <span style="color:@(item.Category != null && item.Category.Equals("Debit", System.StringComparison.OrdinalIgnoreCase) ? "red" : item.Category != null && item.Category.Equals("Credit", System.StringComparison.OrdinalIgnoreCase) ? "green" : "inherit")">
+                    @Html.DisplayFor(modelItem => item.Category)
+                </span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.AccountHolderName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+    </table>
+</div>

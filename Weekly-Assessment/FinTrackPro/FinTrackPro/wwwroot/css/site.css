@@ -1,0 +1,73 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* FinTrackPro custom styles */
+.account-bg {
+  background: linear-gradient(90deg, #f7fbff 0%, #eef7ff 100%);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.transaction-bg {
+  background: linear-gradient(90deg, #fffaf6 0%, #fff2e8 100%);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.summary-card {
+  border-radius: 8px;
+  box-shadow: 0 .125rem .5rem rgba(0,0,0,.05);
+}
+
+.symbol-small {
+  font-size: 0.95rem;
+  margin-right: 6px;
+}
+
+.card-header-custom {
+  background: linear-gradient(90deg, #f8f9fa, #eef7ff);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Page and home backgrounds */
+.home-bg {
+  background: linear-gradient(180deg, #ffffff 0%, #f4fbff 100%);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.page-bg {
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf8 100%);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* index page background: use page-bg for light professional look */
+/* Removed dark theme styles to keep all views light and professional */
+
+/* Create page grey background */
+.create-bg {
+  background: #f2f4f6;
+  padding: 1rem;
+  border-radius: 8px;
+}

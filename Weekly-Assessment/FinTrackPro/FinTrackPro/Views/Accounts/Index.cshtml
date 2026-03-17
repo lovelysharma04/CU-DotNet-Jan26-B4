@@ -1,0 +1,184 @@
+﻿@* @model IEnumerable<FinTrackPro.Models.Account>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Accounts</h1>
+
+<p>
+    <a asp-action="Create">Add New Account</a>
+</p>
+<div class="account-bg mb-3">
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountHolderName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountHolderName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+ *@
+@model IEnumerable<FinTrackPro.Models.Account>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Accounts</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Account</a>
+</p>
+
+<div class="page-bg">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountHolderName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountHolderName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+
+                    <!-- Accordion Button -->
+                    <button class="btn btn-sm btn-dark text-white"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#transactions-@item.Id">
+                        View Transactions
+                    </button>
+                </td>
+            </tr>
+
+            <!-- Accordion Transactions Row -->
+
+            <tr class="collapse" id="transactions-@item.Id">
+                <td colspan="5">
+
+                    <div class="transaction-bg">
+                        <h5 class="mb-3">Transactions</h5>
+                        @if (item.Transactions != null && item.Transactions.Any())
+                        {
+                        var totalCredit = item.Transactions.Where(t => !string.IsNullOrEmpty(t.Category) && t.Category.Equals("Credit", System.StringComparison.OrdinalIgnoreCase)).Sum(t => t.Amount);
+                        var totalDebit = item.Transactions.Where(t => !string.IsNullOrEmpty(t.Category) && t.Category.Equals("Debit", System.StringComparison.OrdinalIgnoreCase)).Sum(t => t.Amount);
+                        var balanceColor = item.Balance >= 0 ? "green" : "red";
+
+                        <div class="mb-2">
+                            <strong>Summary:</strong>
+                            <span style="color:green; margin-left:1rem">Credit: @($"₹{totalCredit:N2}")</span>
+                            <span style="color:red; margin-left:1rem">Debit: @($"₹{totalDebit:N2}")</span>
+                            <span style="color:@balanceColor; margin-left:1rem">Current Balance: @($"₹{item.Balance:N2}")</span>
+                        </div>
+                        <table class="table table-sm table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (var t in item.Transactions)
+                                {
+                                    <tr>
+                                        <td>@t.Description</td>
+                                        <td style="color:@(t.Category != null && t.Category.Equals("Credit", System.StringComparison.OrdinalIgnoreCase) ? "green" : t.Category != null && t.Category.Equals("Debit", System.StringComparison.OrdinalIgnoreCase) ? "red" : "inherit")">@($"₹{t.Amount:N2}")</td>
+                                        <td><span style="color:@(t.Category != null && t.Category.Equals("Credit", System.StringComparison.OrdinalIgnoreCase) ? "green" : t.Category != null && t.Category.Equals("Debit", System.StringComparison.OrdinalIgnoreCase) ? "red" : "inherit")">@t.Category</span></td>
+                                        <td>@t.Date.ToShortDateString()</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No transactions available.</p>
+                    }
+
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+    </table>
+</div>
