@@ -1,4 +1,6 @@
-﻿using Day56_01_MVC_CRUD.Models;
+﻿using System;
+using System.Linq;
+using Day56_01_MVC_CRUD.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +20,22 @@ namespace Day56_01_MVC_CRUD.Controllers
             new Loan { Id = 8, BorrowerName = "Pooja Singh", LenderName = "Global Bank", Amount = 300000, IsSettled = false }
         };
         // GET: LoanController
-        public ActionResult Index()
+        // Optional search: ?q=term
+        public ActionResult Index(string q)
         {
-            return View(loans);
+            if (string.IsNullOrWhiteSpace(q))
+                return View(loans);
+
+            var term = q.Trim();
+            var results = loans.Where(x => (!string.IsNullOrEmpty(x.BorrowerName) && x.BorrowerName.Contains(term, StringComparison.OrdinalIgnoreCase))
+                                          || (!string.IsNullOrEmpty(x.LenderName) && x.LenderName.Contains(term, StringComparison.OrdinalIgnoreCase))).ToList();
+
+            if (results.Count == 0)
+            {
+                ViewData["NoResultsMessage"] = $"No records found for '{term}'.";
+            }
+
+            return View(results);
         }
 
         // GET: LoanController/Details/5
@@ -112,16 +127,28 @@ namespace Day56_01_MVC_CRUD.Controllers
         // GET: LoanController/Delete/5
         public IActionResult Delete(int id)
         {
-            for (int i = 0; i < loans.Count; i++)
+            var loan = loans.FirstOrDefault(x => x.Id == id);
+
+            if (loan == null)
+                return NotFound();
+
+            return View(loan);
+        }
+
+        // POST: LoanController/Delete/5
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var loan = loans.FirstOrDefault(x => x.Id == id);
+
+            if (loan != null)
             {
-                if (loans[i].Id == id)
-                {
-                    loans.RemoveAt(i);
-                    break;
-                }
+                loans.Remove(loan);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
     }

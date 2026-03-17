@@ -2,7 +2,52 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4 bg-primary text-white">Welcome To QuickLoan</h1>
-    <a class="btn btn-primary" href="Loan/Index" role="button">Loan List</a>
+<div class="hero py-5 text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <h1 class="display-4 fw-bold">Welcome to QuickLoan</h1>
+                <p class="lead">Manage loan records quickly and securely. Add, edit or remove loan entries with an intuitive interface.</p>
+                <p>
+                    <a class="btn btn-light btn-lg me-2" href="/Loan/Index" role="button">View Loans</a>
+                    <a class="btn btn-outline-light btn-lg" href="/Loan/Create" role="button">Create Loan</a>
+                </p>
+            </div>
+            <div class="col-md-5 text-center">
+                <img src="~/images/quickloan.jpeg" alt="Loans" class="img-fluid rounded" style="max-height:240px; object-fit:cover;" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+    <div class="row g-4 feature-cards">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="feature-icon">⚡</div>
+                    <h5 class="card-title">Fast Setup</h5>
+                    <p class="card-text">Quickly add loans and keep your records organized.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="feature-icon">🔒</div>
+                    <h5 class="card-title">Secure</h5>
+                    <p class="card-text">No external storage — data lives in-memory for this demo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="feature-icon">👍</div>
+                    <h5 class="card-title">User Friendly</h5>
+                    <p class="card-text">Clean UI with responsive components built with Bootstrap.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

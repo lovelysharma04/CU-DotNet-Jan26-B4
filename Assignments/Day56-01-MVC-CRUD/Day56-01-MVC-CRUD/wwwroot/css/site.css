@@ -18,5 +18,144 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: 90px;
+  background: #fbfdff;
+  color: #1f2937;
 }
+
+/* Global theming for QuickLoan */
+.hero {
+  /* stronger HD gradient and subtle diagonal shine */
+  background: linear-gradient(135deg, #0d47a1 0%, #1976d2 45%, #42a5f5 100%);
+  border-radius: 12px;
+  box-shadow: 0 0.75rem 1.5rem rgba(13,71,161,0.12);
+  margin-top: 2rem; /* gap between navbar and hero */
+}
+
+.hero .display-4 { color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+.hero .lead { color: rgba(255,255,255,0.95); }
+
+.create-card {
+  background: linear-gradient(180deg, #ffffff, #f1f9ff);
+  border: 1px solid rgba(37,140,251,0.12);
+  box-shadow: 0 .5rem 1rem rgba(37,140,251,0.06);
+  padding: 0.5rem;
+}
+
+.form-control {
+  height: calc(2.5rem + 2px);
+  font-size: 1rem;
+}
+
+/* Icon styles for feature cards and form inputs */
+.feature-icon {
+  font-size: 2.25rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.feature-cards .card .card-body {
+  text-align: center;
+}
+
+.input-group-text.hd {
+  background: linear-gradient(90deg,#1b6ec2,#258cfb);
+  color: #fff;
+  border: none;
+}
+
+.create-card .card-body {
+  padding: 1.25rem;
+}
+
+.confirm-card .card-header h3 { font-weight: 600; }
+
+/* Adjust hero padding and spacing */
+.hero {
+  padding: 4.5rem 0;
+  margin-bottom: 2rem;
+}
+
+/* Centered toast styling */
+.custom-toast-wrap {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1080;
+  padding: 0.5rem;
+}
+.custom-toast .toast-body {
+  font-weight: 600;
+  color: #0b2a4a;
+}
+.custom-toast {
+  min-width: 320px;
+  border-radius: 10px;
+  box-shadow: 0 0.5rem 1rem rgba(11,42,74,0.12);
+}
+
+/* Feature cards spacing on home page */
+.feature-cards .card {
+  min-height: 140px;
+}
+
+/* Confirm delete centered card */
+.confirm-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  min-height: 50vh;
+}
+.confirm-card {
+  max-width: 800px;
+  border-radius: 10px;
+  border: 1px solid rgba(220,53,69,0.08);
+}
+.confirm-card .card-header {
+  background: linear-gradient(90deg, #dc3545, #c82333);
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.confirm-card .text-danger {
+  color: #b02a37 !important;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.card .card-body {
+  padding: 1.5rem;
+}
+
+.container {
+  max-width: 1100px;
+}
+
+footer.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #f8f9fa;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  padding: 0.75rem 0;
+}
+
+/* Improve table appearance on loan index */
+table.table {
+  box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.04);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.text-muted.small {
+  opacity: 0.8;
+}
+
+/* Utility */
+.mb-lg-5 { margin-bottom: 3rem !important; }
