@@ -1,0 +1,142 @@
+﻿@* @model Day_60_WealthTrack.Models.Investment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Investment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TickerSymbol" class="control-label"></label>
+                <input asp-for="TickerSymbol" class="form-control" />
+                <span asp-validation-for="TickerSymbol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetName" class="control-label"></label>
+                <input asp-for="AssetName" class="form-control" />
+                <span asp-validation-for="AssetName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchasePrice" class="control-label"></label>
+                <input asp-for="PurchasePrice" class="form-control" />
+                <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseDate" class="control-label"></label>
+                <input asp-for="PurchaseDate" class="form-control" />
+                <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+@model Day_60_WealthTrack.Models.ViewModels.InvestmentCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Investment</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="TickerSymbol" class="control-label"></label>
+                <input asp-for="TickerSymbol" class="form-control" />
+                <span asp-validation-for="TickerSymbol" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AssetName" class="control-label"></label>
+                <input asp-for="AssetName" class="form-control" />
+                <span asp-validation-for="AssetName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <strong>Total Value:</strong> <span id="totalValue">@Model.TotalValue</span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        (function(){
+            const priceEl = document.getElementById('Price');
+            const qtyEl = document.getElementById('Quantity');
+            const totalEl = document.getElementById('totalValue');
+
+            function formatCurrency(value){
+                if (isNaN(value)) value = 0;
+                try{
+                    return new Intl.NumberFormat(undefined, {style: 'currency', currency: 'USD'}).format(value);
+                } catch(e){
+                    return '$' + Number(value).toFixed(2);
+                }
+            }
+
+            function updateTotal(){
+                const price = parseFloat(priceEl?.value || 0) || 0;
+                const qty = parseFloat(qtyEl?.value || 0) || 0;
+                totalEl.textContent = formatCurrency(price * qty);
+            }
+
+            if(priceEl) priceEl.addEventListener('input', updateTotal);
+            if(qtyEl) qtyEl.addEventListener('input', updateTotal);
+        })();
+    </script>
+}

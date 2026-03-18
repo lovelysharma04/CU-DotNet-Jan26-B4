@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome To WealthTrack</h1>
+    <p>Manage your investments and track portfolio value.</p>
+    <p>
+        <strong>Total Investments:</strong> @ViewData["TotalCount"]
+        &nbsp;|&nbsp;
+        <strong>Total Portfolio Value:</strong> @ViewData["TotalPortfolioValue"]
+    </p>
+    <p>
+        <a asp-controller="Investments" asp-action="Index">View Investments</a>
+    </p>
+</div>
