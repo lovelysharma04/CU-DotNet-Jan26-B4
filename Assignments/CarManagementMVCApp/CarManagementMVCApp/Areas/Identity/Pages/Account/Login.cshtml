@@ -1,0 +1,235 @@
+﻿@* @page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h2>Use a local account to log in.</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email" class="form-label">Email</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.Password" class="form-label">Password</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="checkbox mb-3">
+                    <label asp-for="Input.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3>Use another service to log in.</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+                            about setting up this ASP.NET application to support logging in via external services</a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div> *@
+
+@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    /* Scoped to avoid overriding global layout styles */
+    .login-page {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+    }
+
+    .main-container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* Left Side (Branding) */
+    .left-panel {
+        flex: 1;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 60px;
+    }
+
+    .left-panel h1 {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    .left-panel p {
+        margin-top: 15px;
+        opacity: 0.8;
+    }
+
+    /* Right Side (Login Card) */
+    .right-panel {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .glass-card {
+        width: 350px;
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+        color: white;
+    }
+
+    .glass-card h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .form-control {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+        color: white;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #00c6ff;
+    }
+
+    .btn-modern {
+        width: 100%;
+        border-radius: 30px;
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        border: none;
+        color: white;
+        padding: 10px;
+        transition: 0.3s;
+    }
+
+    .btn-modern:hover {
+        opacity: 0.8;
+    }
+
+    .links {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    .links a {
+        color: #00c6ff;
+        text-decoration: none;
+    }
+
+    .links a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="login-page">
+
+<div class="main-container">
+
+    <!-- LEFT SIDE -->
+    <div class="left-panel">
+        <h1>🚗 Car Management</h1>
+        <p>Manage vehicles, control access, and streamline your workflow with a modern system.</p>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right-panel">
+        <div class="glass-card">
+
+            <h2>Welcome Back</h2>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <input asp-for="Input.Email" class="form-control" placeholder="Email" />
+                </div>
+
+                <div class="mb-3">
+                    <input asp-for="Input.Password" type="password" class="form-control" placeholder="Password" />
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                    <label class="form-check-label">Remember Me</label>
+                </div>
+
+                <button type="submit" class="btn btn-modern">Login</button>
+
+                <div class="links">
+                    <a asp-page="./Register">Create Account</a> |
+                    <a asp-page="./ForgotPassword">Forgot Password</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

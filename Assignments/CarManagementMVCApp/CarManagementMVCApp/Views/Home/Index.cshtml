@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Manage vehicles, control access, and streamline your workflow with a modern system.</p>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var currentUser = await UserManager.GetUserAsync(User);
+        var roles = currentUser is null ? new List<string>() : (await UserManager.GetRolesAsync(currentUser)).ToList();
+
+        <div class="mt-4">
+            <a asp-controller="Cars" asp-action="Index" class="btn btn-modern btn-lg me-2">Open Cars</a>
+
+            @if (roles.Contains("Admin") || roles.Contains("Customer"))
+            {
+                <a asp-controller="Cars" asp-action="Create" class="btn btn-outline-primary btn-lg me-2">Create Car</a>
+            }
+            else
+            {
+                <button type="button" class="btn btn-outline-secondary btn-lg me-2 access-denied" data-message="Only Customers or Admins can create cars">Create Car</button>
+            }
+
+            @if (roles.Contains("Admin"))
+            {
+                <a asp-controller="Cars" asp-action="Index" class="btn btn-secondary btn-lg">Admin Panel</a>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="mt-4">
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-modern btn-lg me-2">Login</a>
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-primary btn-lg">Register</a>
+        </div>
+    }
+
+</div>

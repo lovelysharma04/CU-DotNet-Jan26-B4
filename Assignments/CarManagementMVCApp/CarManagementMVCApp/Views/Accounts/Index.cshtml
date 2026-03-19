@@ -1,0 +1,40 @@
+@model IEnumerable<CarManagementMVCApp.Models.UserRolesViewModel>
+@{
+    ViewData["Title"] = "Users & Roles";
+}
+
+<div class="card card-modern p-3">
+    <h2>Users and Roles</h2>
+    <p class="text-muted">List of application users and their assigned roles.</p>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>User Id</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var u in Model)
+                {
+                    <tr>
+                        <td>@u.UserId</td>
+                        <td>@u.Email</td>
+                        <td>
+                            @if (u.Roles != null && u.Roles.Count > 0)
+                            {
+                                @string.Join(", ", u.Roles)
+                            }
+                            else
+                            {
+                                <em>None</em>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

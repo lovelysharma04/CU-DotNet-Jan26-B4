@@ -1,0 +1,106 @@
+﻿@model IEnumerable<CarManagementMVCApp.Models.Car>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Cars";
+
+    // determine role flags for the current user to control UI
+    var isAdmin = false;
+    var isCustomer = false;
+    var isUserRole = false;
+    if (SignInManager.IsSignedIn(User))
+    {
+        var currentUser = await UserManager.GetUserAsync(User);
+        if (currentUser != null)
+        {
+            var roles = (await UserManager.GetRolesAsync(currentUser)).ToList();
+            isAdmin = roles.Contains("Admin");
+            isCustomer = roles.Contains("Customer");
+            isUserRole = roles.Contains("User");
+        }
+    }
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3">Cars</h1>
+        <p class="text-muted">Browse available vehicles. Use the actions to view details or manage entries based on your role.</p>
+    </div>
+    <div class="text-end">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <span class="badge bg-info text-dark me-2">Role: @(isAdmin ? "Admin" : isCustomer ? "Customer" : isUserRole ? "User" : "Unknown")</span>
+        }
+
+        @if (isAdmin || isCustomer)
+        {
+            <a asp-action="Create" class="btn btn-modern">Create New</a>
+        }
+        else if (!SignInManager.IsSignedIn(User))
+        {
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-modern">Login to create</a>
+        }
+        @* Users (signed-in with role 'User') only have view access; do not show create/edit/delete buttons *@
+    </div>
+</div>
+
+<div class="card card-modern p-3">
+    <div class="table-responsive">
+        <table class="table align-middle table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Actions">
+                    <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                    @* Only Admins get Edit/Delete links. Customers and Users see only Details. Anonymous users are prompted to login for edit/delete. *@
+                    @if (isAdmin)
+                    {
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                    else if (!SignInManager.IsSignedIn(User))
+                    {
+                        <a class="btn btn-sm btn-outline-secondary" asp-area="Identity" asp-page="/Account/Login">Edit</a>
+                        <a class="btn btn-sm btn-outline-danger" asp-area="Identity" asp-page="/Account/Login">Delete</a>
+                    }
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    </div>
+</div>
