@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using SmartBankMiniProject.Data;
 using SmartBankMiniProject.Repositories;
 using SmartBankMiniProject.Services;
 using SmartBankMiniProject.Exceptions;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +27,23 @@ builder.Services.AddControllers()
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 
-//  AutoMapper
-builder.Services.AddAutoMapper(typeof(Program));
+// JWT Service
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidIssuer = "SmartBank",
+        ValidAudience = "SmartBankUsers",
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes("THIS_IS_SUPER_SECRET_KEY_12345_MY_NAME_IS_SMARTBANK"))
+    };
+});
+
+//  AutoMapper - configure and add maps from current assembly
+builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(Program).Assembly));
 
 //  Controllers
 builder.Services.AddControllers();
@@ -46,6 +64,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

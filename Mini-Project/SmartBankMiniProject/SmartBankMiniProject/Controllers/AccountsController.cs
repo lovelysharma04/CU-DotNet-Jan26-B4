@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartBankMiniProject.Data;
@@ -14,6 +15,7 @@ namespace SmartBankMiniProject.Controllers
 {
     [ApiController]
     [Route("accounts")]
+    [Authorize]
     public class AccountsController : ControllerBase
     {
         private readonly IAccountService _service;
