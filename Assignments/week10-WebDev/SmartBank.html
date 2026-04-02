@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SmartBank - Accounts</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>User Accounts</h2>
+
+    <button onclick="loadAccounts()">Load Accounts</button>
+
+    <br /><br />
+
+    <table id="accountsTable">
+        <thead>
+            <tr>
+                <th>Account Number</th>
+                <th>Type</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        async function loadAccounts() {
+            try {
+                const response = await fetch(`https://localhost:7002/api/accounts`);
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data = await response.json();
+
+                const tableBody = document.querySelector("#accountsTable tbody");
+                tableBody.innerHTML = "";
+
+                data.forEach(account => {
+                    const row = `
+                        <tr>
+                            <td>${account.accountNumber}</td>
+                            <td>${account.accountType}</td>
+                            <td>${account.balance}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+
+            } catch (error) {
+                alert("Error: " + error.message);
+                console.error(error);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

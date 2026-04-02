@@ -7,25 +7,27 @@ using System.Security.Claims;
 public class TrackingController : ControllerBase
 {
     [HttpGet("gps")]
-    [Authorize] // Only checks if user is logged in
+    [Authorize(Roles = "Manager")]
     public IActionResult GetGps()
     {
-        var role = User.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (role != "Manager")
+        var gpsData = new[]
         {
-            return StatusCode(403, new
+            new
             {
-                message = "Access denied. Only Managers can view GPS data."
-            });
-        }
-
-        var data = new[]
-        {
-            new { TruckId = "T1", Location = "Delhi" },
-            new { TruckId = "T2", Location = "Mumbai" }
+                TruckId = "T1",
+                Latitude = 28.6139,
+                Longitude = 77.2090,
+                Timestamp = DateTime.UtcNow
+            },
+            new
+            {
+                TruckId = "T2",
+                Latitude = 19.0760,
+                Longitude = 72.8777,
+                Timestamp = DateTime.UtcNow
+            }
         };
 
-        return Ok(data);
+        return Ok(gpsData);
     }
 }

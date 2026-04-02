@@ -1,0 +1,8 @@
+﻿namespace Day69_FluentAPI.DTOs
+{
+    public class EnrollmentDto
+    {
+        public int StudentId { get; set; }
+        public int CourseId { get; set; }
+    }
+}
