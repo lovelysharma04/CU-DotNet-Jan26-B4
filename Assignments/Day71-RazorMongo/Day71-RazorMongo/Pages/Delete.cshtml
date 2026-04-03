@@ -1,0 +1,19 @@
+﻿@page "{id}"
+@model DeleteModel
+
+<div class="container mt-5 text-center">
+    <div class="card p-4 shadow">
+        <h3 class="text-danger">🗑️ Delete Laptop</h3>
+
+        <p>Are you sure you want to delete this laptop?</p>
+
+        <h5>@Model.Laptop.ModelName</h5>
+
+        <form method="post">
+            <input type="hidden" asp-for="Laptop.Id" />
+
+            <button class="btn btn-danger">Yes, Delete</button>
+            <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

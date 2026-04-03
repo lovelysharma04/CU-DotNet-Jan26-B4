@@ -1,0 +1,33 @@
+﻿@page
+@model CreateModel
+
+<div class="container mt-5">
+    <div class="card shadow p-4 rounded-4">
+        <h3 class="text-center text-primary mb-4">💻 Add New Laptop</h3>
+
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label class="form-label">Model Name</label>
+                <input asp-for="Laptop.ModelName" class="form-control form-control-lg" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Serial Number</label>
+                <input asp-for="Laptop.SerialNumber" class="form-control form-control-lg" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Price</label>
+                <input asp-for="Laptop.Price" class="form-control form-control-lg" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">💾 Save</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">📊 Laptop Inventory</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success text-center">
+            @TempData["Success"]
+        </div>
+    }
+
+    <div class="text-end mb-3">
+        <a asp-page="Create" class="btn btn-success">➕ Add Laptop</a>
+    </div>
+
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Model</th>
+                <th>Serial</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Laptops)
+            {
+                <tr>
+                    <td>@item.ModelName</td>
+                    <td>@item.SerialNumber</td>
+                    <td>₹ @item.Price</td>
+
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
+                             Edit
+                        </a>
+
+                        <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                             Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
