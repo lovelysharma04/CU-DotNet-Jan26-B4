@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="VagabondAPI/VagabondAPI.csproj" />
+  <Project Path="VagabondMVC/VagabondMVC.csproj" Id="00a953aa-5a70-4de1-b183-e008dbd71259" />
+</Solution>
