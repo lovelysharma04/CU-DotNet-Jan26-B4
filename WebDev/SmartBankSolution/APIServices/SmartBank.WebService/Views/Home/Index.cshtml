@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="text-center mb-5">
+    <h1 class="fw-bold">Welcome to SmartBank 💳</h1>
+    <p>Your digital banking solution</p>
+</div>
+
+@if (Context.Session.GetString("JWT") != null)
+{
+    <div class="row text-dark">
+
+        <!-- Accounts -->
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 text-center">
+                <h3>💰 Accounts</h3>
+                <p>View and manage your accounts</p>
+                <a href="https://localhost:7005/Account" class="btn btn-primary">Go</a>
+            </div>
+        </div>
+
+        <!-- Transactions -->
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 text-center">
+                <h3>📊 Transactions</h3>
+                <p>View your transaction history</p>
+                <a href="https://localhost:7005/Account" class="btn btn-success">Go</a>
+            </div>
+        </div>
+
+        <!-- Transfer -->
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 text-center">
+                <h3>🔄 Transfer</h3>
+                <p>Send money securely</p>
+                <a href="https://localhost:7005/Account" class="btn btn-warning">Go</a>
+            </div>
+        </div>
+
+    </div>
+}
+else
+{
+    <div class="text-center mt-5">
+        <h3>Please login to access your dashboard</h3>
+        <a class="btn btn-light mt-3" href="/Auth/Login">Login</a>
+    </div>
+}

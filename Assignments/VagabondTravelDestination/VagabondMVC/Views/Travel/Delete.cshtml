@@ -1,0 +1,10 @@
+﻿@model Destination
+
+<h3>Delete this destination?</h3>
+
+<p>@Model.CityName - @Model.Country</p>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger">Delete</button>
+</form>

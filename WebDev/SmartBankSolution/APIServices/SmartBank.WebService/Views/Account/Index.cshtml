@@ -1,0 +1,106 @@
+@model List<WebApplicationMVC.DTOs.AccountDTO>
+
+@{
+    ViewData["Title"] = "Accounts";
+}
+
+<h2>Accounts</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Account</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>Id</th> *@
+            <th>Number</th>
+            <th>Balance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var acc in Model)
+        {
+            <tr>
+                @* <td>@acc.Id</td> *@
+                <td>@acc.AccountNumber</td>
+                <td>₹@acc.Balance</td>
+                <td>
+                    <a asp-controller="Transaction" asp-action="Deposit" asp-route-accountId="@acc.Id">Deposit</a> |
+                    <a asp-controller="Transaction" asp-action="Withdraw" asp-route-accountId="@acc.Id">Withdraw</a> |
+                
+                    <button type="button" onclick="toggleTransactions('tx-@acc.Id')">
+                        View Transactions
+                    </button>
+                </td>
+            </tr>
+
+            <tr id="tx-@acc.Id" style="display:none;">
+                <td colspan="4">
+                    @if (acc.Transactions != null && acc.Transactions.Any())
+                    {
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var t in acc.Transactions.OrderByDescending(t => t.CreatedAt))
+                                {
+                                    <tr>
+                                        <td>
+                                            @if (t.Type == "Deposit")
+                                            {
+                                                <span style="color:green;">@t.Type</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color:red;">@t.Type</span>
+                                            }
+                                        </td>
+                                        <td>₹@t.Amount</td>
+                                        <td>@t.Status</td>
+                                        <td>@t.CreatedAt</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No transactions found.</p>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    function toggleTransactions(id) {
+        var row = document.getElementById(id);
+        if (row.style.display === "none") {
+            row.style.display = "table-row";
+        } else {
+            row.style.display = "none";
+        }
+    }
+</script>

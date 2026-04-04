@@ -1,0 +1,13 @@
+﻿@model Destination
+
+<h2>Add Destination</h2>
+
+<form asp-action="Create">
+    <input asp-for="CityName" class="form-control mb-2" placeholder="City" />
+    <input asp-for="Country" class="form-control mb-2" placeholder="Country" />
+    <input asp-for="Description" class="form-control mb-2" placeholder="Description" />
+    <input asp-for="Rating" class="form-control mb-2" placeholder="Rating" />
+    <input asp-for="LastVisited" type="date" class="form-control mb-2" />
+
+    <button class="btn btn-success">Save</button>
+</form>
