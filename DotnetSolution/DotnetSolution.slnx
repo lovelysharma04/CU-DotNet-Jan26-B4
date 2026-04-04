@@ -1,7 +1,4 @@
 <Solution>
-  <Folder Name="/week12/">
-    <Project Path="MultiLayerAppDemo1/MultiLayerAppDemo1.csproj" Id="74e65502-67a9-4f0d-b28a-b9b6c5cfa5da" />
-  </Folder>
   <Folder Name="/week2/">
     <Project Path="CSharpLearning/CSharpLearning.csproj" Id="41f4613c-1ff9-4cf3-89d1-26db080a1dc8" />
     <Project Path="FrameworkConsoleApp/FrameworkConsoleApp.csproj" Id="f0f3d86c-507a-409f-b56e-6abf69e7a327" />
