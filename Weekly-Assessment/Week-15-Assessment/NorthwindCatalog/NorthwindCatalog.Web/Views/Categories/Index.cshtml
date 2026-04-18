@@ -1,0 +1,46 @@
+﻿@* @model List<NorthwindCatalog.Services.DTOs.CategoryDto>
+
+<h2>Categories</h2>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <img src="@item.ImageUrl" class="card-img-top" alt="@item.CategoryName"
+                     onerror="this.src='/images/default.jpg'" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.CategoryName</h5>
+                    <a href="/Products/ByCategory/@item.CategoryId" class="btn btn-primary">
+                        View Products
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div> *@
+
+@model List<NorthwindCatalog.Services.DTOs.CategoryDto>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Categories</h2>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="@item.ImageUrl"
+                         class="card-img-top"
+                         alt="@item.CategoryName"
+                         style="height: 180px; object-fit: cover;" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@item.CategoryName</h5>
+                        <a href="/Products/ByCategory/@item.CategoryId"
+                               class="btn btn-primary mt-auto">
+                            View Products
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
